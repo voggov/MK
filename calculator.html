@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+	<meta charset="utf-8">
+	<title>Калькулятор</title>
+
+	<style type="text/css">
+		body {
+		  text-align: center;
+		  margin: 10;
+		  font-family: Verdana, Arial, sans-serif;
+		  font-size: 16px;
+		}
+		input {
+		  display: inline-block;
+		  margin: 20px auto;
+		  border: 2px solid #eee;
+		  padding: 10px 20px;
+		  font-family: Verdana, Arial, sans-serif;
+		  font-size: 16px;
+		}
+		button{
+		  font-family: Verdana, Arial, sans-serif;
+		  font-size: 16px;
+		  margin: 10px;
+		  padding: 10px;
+		}
+		.light{
+			background-color: yellow;
+		}
+	</style>
+
+</head>
+<body>
+
+	<h1>Калькулятор</h1>
+	<input id="num1" />
+
+	<div id="operator_btns">
+	  <button id="plus" onclick="sel_ligth('plus')">+</button>
+	  <button id="minus" onclick="sel_ligth('minus')">-</button>
+	  <button id="times" onclick="sel_ligth('times')">x</button>
+	  <button id="divide" onclick="sel_ligth('divide')">:</button>
+	</div>
+
+	<input id="num2" />
+	<br>
+
+	<button onclick="func()">Посчитать</button>
+
+	<p id="result"></p>
+
+	<script>
+	  var op; 
+
+	  function sel_ligth(sel_id) {
+	  	document.getElementById("plus").classList.remove("light");
+	  	document.getElementById("minus").classList.remove("light");
+	  	document.getElementById("times").classList.remove("light");
+	  	document.getElementById("divide").classList.remove("light");
+
+	  	document.getElementById(sel_id).classList.add("light");
+
+	  	switch (sel_id) {
+	  	  case "plus":
+	  	    op = "+"
+	  	    break;
+	  	  case 'minus':
+	  	    op = '-'
+	  	    break;
+	  	  case 'times':
+	  	    op = "*"
+	  	    break;
+	  	  case 'divide':
+	  	    op = "/"
+	  	    break;
+	  	}
+	  }
+
+      document.getElementById("num2").addEventListener('keydown', function(e) {
+		if (e.keyCode === 13) {
+		  func();
+		}
+	  });
+	  
+	  function func() {
+	    var result;
+	    var num1 = Number(document.getElementById("num1").value);
+	    var num2 = Number(document.getElementById("num2").value);
+	    switch (op) {
+	      case '+':
+	        result = num1 + num2;
+	        sel = document.getElementById("plus").classList;
+	        sel.add("light");
+	        break;
+	      case '-':
+	        result = num1 - num2;
+	        break;
+	      case '*':
+	        result = num1 * num2;
+	        break;
+	      case '/':
+	        result = num1 / num2;
+	        break;
+	    }
+
+	    document.getElementById("result").innerHTML = result;
+	  }
+	</script>
+
+</body>
+</html>
